@@ -12,6 +12,7 @@
  */
 
 #include "student.h"
+#include "base.h"
 #include "globals.h"
 
 // Header standardni knihovny obsahujici funci swap.
@@ -61,23 +62,45 @@ void rasterizeLine(int x1, int y1, int x2, int y2, S_RGBA color)
      */
 
     // Namisto "int dx = x2 - x1", lze v modernim c++ pouzit: 
-    
+
     auto dx{ x2 - x1 };
     auto dy{ y2 - y1 };
 
     // #1 : Doplnte kod pro kontrolu vstupu a upravu koordinatu pro ruzne kvadranty.
-    
-    // Pre riešenie môžete využiť funkcie: 
-    //   -- swap(..., ....)  [ https://en.cppreference.com/w/cpp/algorithm/swap ]
-    //   -- abs(...)  [ https://en.cppreference.com/w/cpp/numeric/math/fabs
-    //                  https://en.cppreference.com/w/cpp/numeric/math/abs ]
+    bool swap = false;
+
+    if (x1 == x2 && y1 == y2)
+    {
+        return;
+    }
+
+    if (abs(dx) < abs(dy))
+    {
+        SWAP(x1, y1);
+        SWAP(x2, y2);
+        SWAP(dx, dy);
+        swap = true;
+    }
+
+    if (dx < 0)
+    {
+        SWAP(x1, x2);
+        SWAP(y1, y2);
+    }
 
     auto y{ y1 << FRAC_BITS };
     auto k{ (dy << FRAC_BITS) / dx };
     for (int x = x1; x <= x2; ++x)
     {
         // #2 : Doplnte kod pro upravu koordinatu pro ruzne kvadranty, pripadne upravte i setPixelColor(...).
-        setPixelColor( x, y >> FRAC_BITS, color);
+        if (swap)
+        {
+            setPixelColor(y >> FRAC_BITS, x, color);
+        }
+        else
+        {
+            setPixelColor(x, y >> FRAC_BITS, color);
+        }
         y += k;
     }
 }
