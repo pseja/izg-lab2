@@ -13,6 +13,8 @@ project (izg_lab_02 LANGUAGES C CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 
+SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set (SOURCE_FILES
     main.cpp
     color.cpp
