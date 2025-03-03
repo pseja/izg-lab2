@@ -123,6 +123,16 @@ void put8PixelsOfCircle(int x, int y, int sx, int sy, S_RGBA color)
      * ╰────┻────╯
      * Využite funkciu setPixelColor(...).
      */
+
+    setPixelColor(sx + x, sy + y, color);
+    setPixelColor(sx - x, sy + y, color);
+    setPixelColor(sx + x, sy - y, color);
+    setPixelColor(sx - x, sy - y, color);
+
+    setPixelColor(sx + y, sy + x, color);
+    setPixelColor(sx - y, sy + x, color);
+    setPixelColor(sx + y, sy - x, color);
+    setPixelColor(sx - y, sy - x, color);
 }
 
 /* Vykresli kruznici se stredem v [s1, s2] o polomeru radius */
