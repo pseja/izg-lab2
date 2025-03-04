@@ -1,29 +1,45 @@
-# Navod ke kompilaci
-- Ke kompilaci je pozadovano Visual Studio 2019 nebo GCC 7.0.0+ a CMake 3.12.0+
+# Generating basic objects in a raster
 
-## Linux
-(unzip v tomto repozitáři už není potřeba)
-- Rozbaľte archív cvičenia: unzip izg_lab02.zip
-- Zmente pracovný adresár na zložku cvičenia: cd izg_lab02/
+Author: Lukáš Pšeja
 
-- Vytvorte priečinok pre zostavenie aplikácie: mkdir build
-- Zmente pracovný adresár na build: cd build/
-- Vytvorte súbory potrebné na zostavenie: cmake ..
-- Zkompilujte aplikáciu: make -j
-- Spustite aplikáciu: ./izg_lab_02
+xlogin: xpsejal00
 
-V případě problémů se spuštěním zkontrolujte, zda máte požadované závislosti pro renderování pomocí SDL, zejména ověřte aktuálnost grafických ovladačů. SDL není potřeba instalovat, je přibaleno ke kostře programu. Kompletní závislosti pro Ubuntu 20.04 lze nalézt zde:
+## Assignment
+1. Solving Problems with the DDA Algorithm (2 points)
+  - Complete the code in the `rasterizeLine()` function.
+  - The correct solution will draw line segments in all quadrants.
+3. Circle Symmetry (1 point)
+  - Complete the code in the `put8PixelsOfCircle()` function.
+  - The correct solution will draw the entire circle.
 
-https://packages.ubuntu.com/en/source/focal/libsdl2
+## Setup
+To compile this application, you'll need GCC 7.0.0+ and CMake 3.12.0+.
+With Ubuntu, you'll also need to install [libsdl2](https://packages.ubuntu.com/en/source/focal/libsdl2).
 
-Většina balíčků je již součástí základního systému, překladače či grafického ovladače, avšak na některých distribucích mohou některé chybět a způsobovat pády.
-## Windows
-- Rozbaľte archív kostry programu do zložky Downloads (nutné pri práci v CVT)
-- Otvorte aplikáciu cmake-gui
-- Pomocou tlačítka "Browse source" vyberte zložku so zdrojovými kódami (priečinok kde je rozbalený ZIP archív cvičenia)
-- Pomocou tlačítka "Browse build" zadajte cestu ku zdorovým kódom so sufixom build/ (napríklad C:/Downloads/izg_lab02/build/)
-- Kliknite na tlačítko Generate, a vyberte možnosť VisualStudio 17 (verzia 2022)
-- V priečinku build/ sa bude nachádzať súbor izg_lab_02.sln
-- Cez súbor izg_lab_02.sln otvorte projekt vo VisualStudio 2022
-- Pomocou klávesy F5 zkompilujete a spustíte aplikáciu
+```sh
+git clone git@github.com:pseja/izg-lab2.git
+git submodule update --init --recursive
+mkdir build
+cd build/
+cmake ..
+make
+./izg_lab_02
+```
 
+## Usage
+| **Key/Button**           | **Action**                          |
+|--------------------------|-------------------------------------|
+| Left mouse click down    | Sets the beginning point of line.   |
+| Left mouse click up      | Sets the ending point of line.      |
+| Right mouse click down   | Sets the center point of circle.    |
+| Right mouse click up     | Sets the radius of circle.          |
+| Middle mouse hold & drag | Rotate the current polygonal model. |
+| L                        | Load testing image.                 |
+| S                        | Save current raster into image.     |
+| D                        | Draw lines from the lines.txt file. |
+| T                        | Draw line testing pattern.          |
+| B                        | Draw polygonal cube.                |
+| N                        | Draw polygonal cuboctahedron.       |
+| M                        | Draw polygonal model.               |
+| C                        | Clear the raster.                   |
+| ESC                      | Quit application.                   |
