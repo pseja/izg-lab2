@@ -2,7 +2,9 @@
 
 Author: Lukáš Pšeja
 
-xlogin: xpsejal00
+Login: xpsejal00
+
+Points: 3/3
 
 ## Assignment
 1. Solving Problems with the DDA Algorithm (2 points)
